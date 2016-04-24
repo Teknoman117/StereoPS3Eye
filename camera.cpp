@@ -55,11 +55,11 @@ Camera::Camera(const std::string& path, uint32_t width, uint32_t height, uint32_
     format.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
     format.fmt.pix.width       = width;
     format.fmt.pix.height      = height;
-    format.fmt.pix.pixelformat = V4L2_PIX_FMT_RGB24;
+    format.fmt.pix.pixelformat = V4L2_PIX_FMT_YUV420;
     format.fmt.pix.field       = V4L2_FIELD_INTERLACED;
     xioctl(fd, VIDIOC_S_FMT, &format);
 
-    if (format.fmt.pix.pixelformat != V4L2_PIX_FMT_RGB24) 
+    if (format.fmt.pix.pixelformat != V4L2_PIX_FMT_YUV420) 
     {
         std::cerr << "[" << path << "] FATAL: libv4l2 didn\'t accept the format" << std::endl;
         exit(EXIT_FAILURE);
